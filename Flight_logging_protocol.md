@@ -2,10 +2,14 @@
 
 _A protocol designed to describe a logged flight from an UAV/Drone
 
-
 ## Read First
 
+### Key Differences 
+
+This protocol is backwards-compatible so entities using the production version protocol will not need to make any changes to their software. This protocol however, introduces a new component that is a additional output in GeoJSON. This GeoJSON component is called "Standard Log" and the original log format introduced in the production version is kept as is called "Extended Log". In addition to the Latitude / Longitude that is specified in GeoJSON, the standard log asks that additional attributes such as ground speed, altitude and a timestamp be written in the properties. Any other information can be added as properties and is left to the operator. 
+
 ### Background
+
 The [published](https://github.com/gutma-org/flight-logging-protocol) "production" version of GUTMA protocol is a terrific start. However, there are some open questions still. These issues (detailed below) are complicated and dont have a clear answer at the moment. Therefore, this development version of the protocol was created to provide a platform to iterate, debate and test ideas to move the protocol forward as the requirements from drone operations and operators evolve.
 
 1. _Flexibility_: A common comment upon review of the production version of the protocol is that it is too flexible. In that, the protocol does not enforce any requirement on how logging should be done the data units and formats to be used. This has led to individual companies extending the protocol to suit their use case, which is to be expected and encouraged. Since there is no instructions on how to log and what to log, we have a situation where two operators logging the same data log in different formats and fashion. This opens up a difficult set of questions around understanding of what is logged, who will make the interpretations, interoperability etc. 
@@ -15,11 +19,6 @@ The [published](https://github.com/gutma-org/flight-logging-protocol) "productio
 5. _Partial and Batch logging_: "Standard log" and "Extended log" is compatible with partial and batch logging, in case of partial or batch logging, as long as the GeoJSON object is valid, the protocol does not mandate what is to be logged so a series of points can be logged between a time duration. 
 6. _Compliance_: By adopting a minimal "standard logging" in GeoJSON, operators implementing this protocol can pre-empt any future legislation around standardization of protocols by adopting a widely accepted format of reporting. 
 
-### Key Differences 
-
-This protocol is backwards-compatible so entities using the production version protocol will not need to make any changes to their software as far as the published protocol is concerned. This protocol however, introduces a new component that is a additional output in GeoJSON. In addition to the Latitude / Longitude that is specified in GeoJSON, the standard log asks that additional attributes such as ground speed, altitude and a timestamp be written in the properties. Any other information can be added as properties and is left to the operator. 
-
-The concept of "Standard Log" is introduced as a GeoJSON and the log format introduced in the production version is kept as is and can be considered as a "Extended Log". 
 
 ## Data types
  
