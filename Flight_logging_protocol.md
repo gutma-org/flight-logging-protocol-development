@@ -1,6 +1,22 @@
 # UAV/Operator Flight logging Exchange Protocol - Development
 
-_A protocol designed to describe a logged flight from an UAV/Drone
+A protocol designed to describe a logged flight from an UAV/Drone
+
+- [UAV/Operator Flight logging Exchange Protocol - Development](#uavoperator-flight-logging-exchange-protocol---development)
+	- [Read First](#read-first)
+		- [Key Differences](#key-differences)
+		- [Background](#background)
+	- [Data types](#data-types)
+		- [Dates & Times](#dates--times)
+		- [Geospatial Data](#geospatial-data)
+		- [Distances](#distances)
+		- [Speed](#speed)
+	- [Message structure](#message-structure)
+	- [Message Details](#message-details)
+		- [flight_data section](#flightdata-section)
+		- [flight_logging\_geojson section](#flightlogginggeojson-section)
+		- [flight\_logging section](#flightlogging-section)
+		- [file section](#file-section)
 
 ## Read First
 
@@ -24,7 +40,7 @@ The [published](https://github.com/gutma-org/flight-logging-protocol) "productio
  
 ### Dates & Times
 
-Dates and times will follow the ISO-8601 formatting standard. Local times are not supported; all times must be in UTC or have a time zone offset specified.
+Dates and times will follow the [ISO-8601](https://www.iso.org/iso-8601-date-and-time-format.html) formatting standard. Local times are not supported; all times must be in UTC or have a time zone offset specified.
 
 No support is made for just a date or just a time. For comparison of time ranges, the start time is regarded as included in the time range, where the end time is excluded.
 
@@ -37,13 +53,13 @@ No guarantees that a timezone offset will be preserved should be made.
 
 ### Geospatial Data
 
-Geospatial data must be described using a geometry object as defined in the GeoJSON specification with the following specific requirements
+Geospatial data must be described using a geometry object as defined in the GeoJSON specification with the following specific requirements:
 
-Using the default CRS - geographic coordinate reference system, using the WGS84 datum, and with longitude and latitude units of decimal degrees.
+1. Using the default CRS - geographic coordinate reference system, using the WGS84 datum, and with longitude and latitude units of decimal degrees.
 
-Bounding box is not expected.
+2. Bounding box is not expected.
 
-Latitude and Longitude should not be specified to more than 8 decimal places. This gives an accuracy of approximately 1.1 mm at the equator making any further digits superfluous.
+3. Latitude and Longitude should not be specified to more than 8 decimal places. This gives an accuracy of approximately 1.1 mm at the equator making any further digits superfluous.
 
 
 ### Distances
@@ -56,124 +72,18 @@ All speeds are specified in meters/seconds
 
 ## Message structure
 
-The message is divided into three main parts: logging data as a GeoJSON FeatureCollection (__mandatory__). Description of devices used (__optional__),   and information about the file itself (__optional__).
+The message is divided into three main parts: logging data as a GeoJSON FeatureCollection (_called Standard log and is mandatory_). Description of devices used (_called Extended log and is optional_), and information about the file itself (_optional_).
 
-Here is a short message example:
-
-	{
-		"exchange": {
-			"exchange_type": "flight_logging",
-			"message": {
-				"flight_data": {
-					"aircraft": {
-						"firmware_version": "2.01b",
-						"hardware_version": "1.00B",
-						"manufacturer": "senseFly",
-						"model": "eBee",
-						"name": "John doe Drone",
-						"serial_number": "EB-99-01807"
-					},
-					"gcs": {
-						"manufacturer": "senseFly",
-						"model": "eMotion",
-						"version": "1.1"
-					},
-					"payload": [{
-						"firmware_version": "1.23",
-						"hardware_version": "0",
-						"model": "WX RGB",
-						"serial_number": "2352342141"
-					}],
-					"mission": "Projet test"
-				},
-				"flight_logging_geojson": {
-					"flight_path": {
-						"type": "FeatureCollection",
-						"features": [{
-								"type": "Feature",
-								"properties": {
-									"time": "2017-05-16T13:19:22.250Z",
-									"altitude": 100,
-									"groundspeed": 20,
-									"event_type": "CONTROLER_EVENT",
-									"event_info": "TAKE-OFF"
-								},
-								"geometry": {
-									"type": "Point",
-									"coordinates": [-6.201825141906738,
-										53.50841695106615
-									]
-								}
-							},
-							{
-								"type": "Feature",
-								"properties": {
-									"time": "2017-05-16T13:19:23.250Z",
-									"altitude": 120,
-									"groundspeed": 20
-								},
-								"geometry": {
-									"type": "Point",
-									"coordinates": [-6.199507713317871,
-										53.509246406536995
-									]
-								}
-							},
-							{
-								"type": "Feature",
-								"properties": {
-									"time": "2017-05-16T13:19:25.250Z",
-									"altitude": 120,
-									"groundspeed": 20,
-									"event_type": "CONTROLER_EVENT",
-									"event_info": "LANDING"
-								},
-								"geometry": {
-									"type": "Point",
-									"coordinates": [-6.20075225830078,
-										53.50916984209669
-									]
-								}
-							}
-						]
-					},
-					"altitude_system": "WGS84",
-					"logging_start_dtg": "2017-05-16T13:19:25.250Z",
-					"tick_increment_modulo": "1",
-					"tick_increment_seconds": "1",
-					"uom_system": "Metric"
-				},
-
-				"file": {
-					"logging_type": "GUTMA_DX_JSON",
-					"filename": "EB-99-01807_0069",
-					"creation_dtg": "2017-05-23T08:38:41.306Z",
-					"version": "1.0.0"
-				},
-				"flight_logging": {
-					"flight_logging_items": [
-						[0.5, 0, 0, 0],
-						[1, 0, 0, 0],
-						[1.5, 0, 0, 0]
-					],
-					"flight_logging_keys": [
-						"timestamp", "speed_vx", "speed_vy", "battery_voltage"
-					],
-					"events": [{
-						"event_type": "CONTROLER_EVENT",
-						"event_info": "TAKE-OFF",
-						"event_timestamp": "0.5"
-					}],
-					"altitude_system": "WGS84",
-					"logging_start_dtg": "2017-05-16T13:19:25.250Z"
-				},
-				"message_type": "flight_logging_submission"
-			}
-		}
-	}
+Here is a short message example: [Example Flight Log](https://github.com/hrishiballal/flight-logging-protocol-development/blob/master/GUTMA_flight_log_example_v1.json)
 
 
 ## Message Details
+The message above has three sections: 
+1. Flight Data Section
+2. Standard Flight Logging (in GeoJSON)
+3. Extended Flight Logging 
+   
+We cover each of these sections in detail below. 
 
 ### flight_data section
 
@@ -208,7 +118,7 @@ This section  contains information about hardware devices used during the flight
 - Mission is used to "tag" the flight or indicate if this flight is part of a larger mission.
 
 ### flight_logging\_geojson section
-This part of the logging is mandatory and must be a valid GeoJSON object. It could be a full flight log or partial one. 
+This part of the logging is called "Standard Logging" and is mandatory and must be a valid GeoJSON object. It could be a full flight log or partial one. 
 
 	"flight_logging_geojson": {
 		"flight_path": {
@@ -269,10 +179,10 @@ This part of the logging is mandatory and must be a valid GeoJSON object. It cou
 	}
 
 
-This is the main part of the file. The format is self describing i.e. it contains the types that are logged. It is must be a valid GeoJSON Point FeatureCollection with the each point having additional mandator properties of timestamp, gps\_altitude and groundspeed.
+ The format is self describing i.e. it contains the geometry types that are logged. It is must be a valid GeoJSON FeatureCollection with the each geometry having additional mandatory properties of timestamp, gps\_altitude and groundspeed. In case of declaring in linestrings, each co-ordinate should be accompanied by timestamps. 
 
-### flight\_logging\ section
-This part of the logging encompasses any additional logging items that need to be logged and provides flexibility to the logger to log additional items.
+### flight\_logging section
+This part of the logging encompasses any additional logging items that need to be logged and provides flexibility to the logger. This is the "Extended log" 
 
 	"flight_logging": {
 		"flight_logging_items": [
@@ -301,6 +211,7 @@ This part of the logging encompasses any additional logging items that need to b
 * **events**: The events propoerty is used to log key events in the flight: "start-up-request", "start-up", "take-off", "en-route", "landing", "emergency", "obstacle-avoidance"
 
 ### file section
+This section contains information about the file itself. All fields are optional.
 
     "file":  {
     	"logging_type": "GUTMA_DX_JSON",
@@ -308,7 +219,6 @@ This part of the logging encompasses any additional logging items that need to b
     	"creation_dtg": "2017-05-23T08:38:41.306Z"
     }
             
-This section contains informations about the file itself. All fields are optional.
 
 * **logging_type**: type of logging
 * **filename**: filename, can be with extension
