@@ -13,10 +13,12 @@ A protocol designed to describe a logged flight from an UAV/Drone
 		- [Speed](#speed)
 	- [Message structure](#message-structure)
 	- [Message Details](#message-details)
+		- [exchange_type section](#exchangetype-section)
 		- [flight_data section](#flightdata-section)
 		- [flight_logging\_geojson section](#flightlogginggeojson-section)
 		- [flight\_logging section](#flightlogging-section)
 		- [file section](#file-section)
+		- [message_type section](#messagetype-section)
 
 ## Read First
 
@@ -79,9 +81,20 @@ Here is a short message example: [Example Flight Log](https://github.com/hrishib
 
 ## Message Details
 The message above has three sections: 
-1. Flight Data Section
-2. Standard Flight Logging (in GeoJSON)
-3. Extended Flight Logging 
+1. Exchange Type (exchange_type)
+2. Flight Data Section (flight_data)
+3. Standard Flight Logging (flight_logging_geojson)
+4. Extended Flight Logging (flight_logging)
+5. File Section (file)
+6. Message Type Section (message_type)
+
+
+### exchange_type section
+This section details the type of message in the exchange. 
+
+	"message_type": "flight_logging"
+            
+* **message_type**: type of logging that the exchange contains. At the moment only allowed type is flight_logging
    
 We cover each of these sections in detail below. 
 
@@ -219,8 +232,14 @@ This section contains information about the file itself. All fields are optional
     	"creation_dtg": "2017-05-23T08:38:41.306Z"
     }
             
-
 * **logging_type**: type of logging
 * **filename**: filename, can be with extension
 * **creation_dtg**: file date creation
 * **version**: protocol version
+
+### message_type section
+This section details the type of message in the exchange. 
+
+	"message_type": "flight_logging_submission"
+            
+* **message_type**: type of logging that the exchange contains. At the moment only allowed type is flight_logging_submission
