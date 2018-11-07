@@ -177,7 +177,8 @@ We cover each of these sections in detail below.
 			"model": "WX RGB",
 			"serial_number": "2352342141"
 		}],
-		"mission": "Project test"
+		"mission": "Farm Survey"
+		"Operation ID": "34d2b0b6-a5d0-4c42-bd1a-5a273ca2b808"
 	}
 
 This section contains information about hardware devices used during the flight:
@@ -186,6 +187,7 @@ This section contains information about hardware devices used during the flight:
 - gcs describes ground control station.
 - Payload is used to declare what devices are embedded during the flight. There can be several payloads like gimbal, camera etc. 
 - Mission is used to "tag" the flight or indicate if this flight is part of a larger mission.
+- A ID associated with this flight issued by the UTM provider. 
 
 #### 2.1.3 flight_logging\_geojson section
 This part of the logging is called "Standard Logging" and is mandatory and must be a valid GeoJSON object. It could be a full flight log or partial one. 
