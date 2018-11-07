@@ -251,6 +251,23 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 							53.50916984209669
 						]
 					}
+				},
+				{
+					"type": "Feature",
+					"properties": {
+						"time": "2017-05-16T13:19:30.250Z",
+						"altitude": 0,
+						"ground_speed": 0,
+						"vertical_speed": 0,
+						"event_type": "CONTROLER_EVENT",
+						"event_info": "FLIGHT_COMPLETE"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-6.20075225830078,
+							53.50916984209669
+						]
+					}
 				}
 			]
 		},
@@ -293,7 +310,7 @@ This part of the logging encompasses any additional logging items that need to b
 * **battery\_voltage**: voltage in volt (float)
 * **logging\_start\_dtg**: describes the beginning of the flight. It is mandatory. 
 * **altitude\_system**: indicates the type of altitude reported: "agl", "amsl", "sps" or "WGS84"
-* **events**: The events propoerty is used to log key events in the flight: "start-up-request", "start-up", "take-off", "en-route", "landing", "emergency", "obstacle-avoidance"
+* **events**: The events propoerty is used to log key events in the flight: "start-up-request", "start-up", "take-off", "en-route", "landing", "emergency", "obstacle-avoidance", "landed", "flight-complete"
 
 #### 2.1.5 file section
 This section contains information about the file itself. All fields are optional.
