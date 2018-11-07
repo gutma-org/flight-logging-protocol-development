@@ -177,8 +177,14 @@ We cover each of these sections in detail below.
 			"model": "WX RGB",
 			"serial_number": "2352342141"
 		}],
-		"mission": "Farm Survey"
-		"Operation ID": "34d2b0b6-a5d0-4c42-bd1a-5a273ca2b808"
+		"operation": [{
+		"mission": "Farm Survey",
+		"operation_id": "34d2b0b6-a5d0-4c42-bd1a-5a273ca2b808",
+		"operator": "Aviation Survey Inc",
+		"utm_provider": "Airmap",
+		"contact": "John Doe",
+		"contact_url":"https://uss.com/contact/bd1a-5a273ca2b808/"
+		}]
 	}
 
 This section contains information about hardware devices used during the flight:
