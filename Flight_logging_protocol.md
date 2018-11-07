@@ -200,9 +200,12 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 					"properties": {
 						"time": "2017-05-16T13:19:22.250Z",
 						"altitude": 100,
-						"groundspeed": 20,
+						"ground_speed": 20,
+						"vertical_speed": 2,
 						"event_type": "CONTROLER_EVENT",
 						"event_info": "TAKE-OFF"
+						"elevation": "50",
+						"elevation_type": "GPS",
 					},
 					"geometry": {
 						"type": "Point",
@@ -216,7 +219,8 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 					"properties": {
 						"time": "2017-05-16T13:19:23.250Z",
 						"altitude": 120,
-						"groundspeed": 20
+						"ground_speed": 20,
+						"vertical_speed": 2,
 					},
 					"geometry": {
 						"type": "Point",
@@ -230,7 +234,8 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 					"properties": {
 						"time": "2017-05-16T13:19:25.250Z",
 						"altitude": 120,
-						"groundspeed": 20,
+						"ground_speed": 20,
+						"vertical_speed": 2,
 						"event_type": "CONTROLER_EVENT",
 						"event_info": "LANDING"
 					},
@@ -268,6 +273,8 @@ This part of the logging encompasses any additional logging items that need to b
 		"events": [{
 			"event_type": "CONTROLER_EVENT",
 			"event_info": "TAKE-OFF",
+			"elevation": "50",
+			"elevation_type": "GPS",
 			"event_timestamp": "0.5"
 		}],
 		"altitude_system": "WGS84",
