@@ -151,7 +151,7 @@ This section details the type of message in the exchange.
 
 	"message_type": "flight_logging"
             
-* **message_type**: type of logging that the exchange contains. At the moment only allowed type is flight_logging
+* **message_type**: type of logging that the exchange contains. At the moment only two types of exchagnes are allowed: flight_logging and flight_enroute. flight_enroute can be used when the log is transmitted by a flight that is already flying.
    
 We cover each of these sections in detail below. 
 
