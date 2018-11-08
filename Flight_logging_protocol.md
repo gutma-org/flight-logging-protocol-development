@@ -279,7 +279,7 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 	}
 
 
- The format is self describing i.e. it contains the geometry types that are logged. It is must be a valid GeoJSON FeatureCollection with the each geometry having additional mandatory properties of timestamp, gps\_altitude and groundspeed. In case of declaring in linestrings, each co-ordinate should be accompanied by timestamps. 
+ The format is self describing i.e. it contains the geometry types that are logged. It is must be a valid GeoJSON FeatureCollection with the each geometry having additional mandatory properties of timestamp, gps\_altitude and groundspeed. In case of declaring in linestrings, each co-ordinate should be accompanied by timestamps. GeoJSON coordinate precision is a subject left to the logging software. GeoJSON recommends six decimal precision, however in cases when the log is shared publicly it may be necessary to limit the precision to ensure privacy and other consideraitons. Also GeoJSON can be use to specify a polygonal area of operation if points are not preferred. 
 
 #### 2.1.4 flight\_logging section
 This part of the logging encompasses any additional logging items that need to be logged and provides flexibility to the logger. This is the "Extended log" 
