@@ -112,12 +112,12 @@ A protocol designed to describe a logged flight from an UAV/Drone
 					},
 					"flight_logging": {
 						"flight_logging_items": [
-							[0.5, 0, 0, 0],
-							[1, 0, 0, 0],
-							[1.5, 0, 0, 0]
+							[0.5, 0, 0, 0.2],
+							[1, 0, 0, 0.18],
+							[1.5, 0, 0, 0.17]
 						],
 						"flight_logging_keys": [
-							"timestamp", "speed_vx", "speed_vy", "battery_voltage"
+							"timestamp", "speed_vx", "speed_vy", "battery_power"
 						],
 						"events": [{
 							"event_type": "CONTROLER_EVENT",
@@ -286,12 +286,12 @@ This part of the logging encompasses any additional logging items that need to b
 
 	"flight_logging": {
 		"flight_logging_items": [
-			[0.5, 0, 0, 0],
-			[1, 0, 0, 0],
-			[1.5, 0, 0, 0]
+			[0.5, 0, 0, 0.25],
+			[1, 0, 0, 0.22],
+			[1.5, 0, 0, 0.33]
 		],
 		"flight_logging_keys": [
-			"timestamp", "speed_vx", "speed_vy", "battery_voltage"
+			"timestamp", "speed_vx", "speed_vy", "battery_power"
 		],
 		"events": [{
 			"event_type": "CONTROLER_EVENT",
@@ -307,7 +307,7 @@ This part of the logging encompasses any additional logging items that need to b
 * **Timestamp** : number of the seconds elapsed since logging_start_dtg. It is a float, with max 3 decimals (so precision is milliseconds). By extension, the last timestamp will be equal to the duration flight in seconds.
 * **gps\_lon, gps\_lat, gps\_altitude**: GPS coordinates
 *  **speed**: ground speed in m/s (float)
-* **battery\_voltage**: voltage in volt (float)
+* **battery\_power**: power as a percentage (float)
 * **logging\_start\_dtg**: describes the beginning of the flight. It is mandatory. 
 * **altitude\_system**: indicates the type of altitude reported: "agl", "amsl", "sps" or "WGS84"
 * **events**: The events propoerty is used to log key events in the flight: "start-up-request", "start-up", "take-off", "en-route", "landing", "emergency", "obstacle-avoidance", "landed", "flight-complete"
