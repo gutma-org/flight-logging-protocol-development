@@ -17,6 +17,7 @@ A protocol designed to describe a logged flight from an UAV/Drone
 		- [3.2 Geospatial Data](#32-geospatial-data)
 		- [3.3 Distances](#33-distances)
 		- [3.4. Speed](#34-speed)
+		- [3.5. Events](#35-events)
 
 ## 1 Example Flight Log
 
@@ -56,7 +57,7 @@ A protocol designed to describe a logged flight from an UAV/Drone
 										"altitude": 100,
 										"groundspeed": 20,
 										"event_type": "CONTROLER_EVENT",
-										"event_info": "TAKE-OFF"
+										"event_info": "TOF"
 									},
 									"geometry": {
 										"type": "Point",
@@ -86,7 +87,7 @@ A protocol designed to describe a logged flight from an UAV/Drone
 										"altitude": 120,
 										"groundspeed": 20,
 										"event_type": "CONTROLER_EVENT",
-										"event_info": "LANDING"
+										"event_info": "LDG"
 									},
 									"geometry": {
 										"type": "Point",
@@ -121,7 +122,7 @@ A protocol designed to describe a logged flight from an UAV/Drone
 						],
 						"events": [{
 							"event_type": "CONTROLER_EVENT",
-							"event_info": "TAKE-OFF",
+							"event_info": "TOF",
 							"event_timestamp": "0.5"
 						}],
 						"altitude_system": "WGS84",
@@ -209,7 +210,7 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 						"ground_speed": 20,
 						"vertical_speed": 2,
 						"event_type": "CONTROLER_EVENT",
-						"event_info": "TAKE-OFF"
+						"event_info": "TOF"
 						"elevation": "50",
 						"elevation_type": "GPS",
 					},
@@ -243,7 +244,7 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 						"ground_speed": 20,
 						"vertical_speed": 2,
 						"event_type": "CONTROLER_EVENT",
-						"event_info": "LANDING"
+						"event_info": "LDG"
 					},
 					"geometry": {
 						"type": "Point",
@@ -260,7 +261,7 @@ This part of the logging is called "Standard Logging" and is mandatory and must 
 						"ground_speed": 0,
 						"vertical_speed": 0,
 						"event_type": "CONTROLER_EVENT",
-						"event_info": "FLIGHT_COMPLETE"
+						"event_info": "UNK"
 					},
 					"geometry": {
 						"type": "Point",
@@ -295,7 +296,7 @@ This part of the logging encompasses any additional logging items that need to b
 		],
 		"events": [{
 			"event_type": "CONTROLER_EVENT",
-			"event_info": "TAKE-OFF",
+			"event_info": "TOF",
 			"elevation": "50",
 			"elevation_type": "GPS",
 			"event_timestamp": "0.5"
@@ -367,3 +368,67 @@ All distances (both horizontal and vertical) are specified in metres.
 ### 3.4. Speed
 
 All speeds are specified in meters/seconds
+
+
+### 3.5. Events
+
+The following controller events can be logged, this is consistent with the ICAO [Phase of Flight](http://www.intlaviationstandards.org/Documents/PhaseofFlightDefinitions.pdf) and [Occurance](http://www.intlaviationstandards.org/Documents/OccurrenceCategoryDefinitions.pdf) definitions.
+
+1. Standing (STD)
+2. Pushback / Towing (PBT)
+3. Taxi (TXI)
+4. Takeoff (TOF)
+5. Initial Climb (ICL)
+6. En Route (ENR)
+7. Maneuvering (MNV)
+8. Approach (APR)
+9. Landing (LDG)
+10. Emergency Descent (EMG)
+11. Uncontrolled Descent (UND)
+12. Post-Impact (PIM)
+13. Unknown (UNK)
+14. Abnormal Runaway Contact (ARC)
+15. Abrupt Maneuver (AMAN)
+16. Aerodrome (ADRM)
+17. Airprox / TCAS Alert / Loss of Seperation / Near midair-collisions / Midair Collisions (MAC)
+18. ATM / CNS (ATM)
+19. Bird (BRD)
+20. Cabin Safety Events (CABIN)
+21. Collision with Obstacle(s) during takeoff and landing (CTOL)
+22. Controlled Flight Into or Toward Terrain (CFIT)
+23. Evacuation (EVAC)
+24. External Load related occurances (EXTL)
+25. Fire / Smoke (F-NI)
+26. Fire / Smoke (F-POST)
+27. Fuel Related (FUEL)
+28. Glider Towing related events (GTOW)
+29. Ground Collision (GCOL)
+30. Ground Handling (RAMP)
+31. Icing (ICE)
+32. Loss of Control-Ground (LOC -G)
+33. Loss of Control - INFLIGHT (LOC-I)
+34. Low Altitude Operations (LALT)
+35. Medical (MED)
+36. Navigation Errors (NAV)
+37. Other (OTHR)
+38. Runway Excursion (RE)
+39. Runway Incursion (RI)
+40. Security Related (SEC)
+41. System / component failure or malfunction (Non-powerplant) (SCF-NP)
+42. System / Component failure or malfunction (Powerplant) (SCF-PP)
+43. Turbulence Encounter (TURB)
+44. Undershoot / overshoot (USOS)
+45. Uninteded Flight in IMC (UIMC)
+46. Unknown of Undetermined (UNK)
+47. Wildlife (WILD)
+48. Wind Shear or Thunderstrom (WSTRW)
+
+and GUTMA Specific events:
+
+1.  Start up request (SUR)
+2.  Emergency (EME)
+3.  Obstacle Avoidance (OBA)
+4.  Landed (LND)
+5.  Flight Complete (FCM)
+6.  
+
