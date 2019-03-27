@@ -430,5 +430,3 @@ and GUTMA Specific events:
 3.  Obstacle Avoidance (OBA)
 4.  Landed (LND)
 5.  Flight Complete (FCM)
-6.  
-
